@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pies</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .main {
+            width: 70%;
+            padding: 15px;
+        }
+
+        .cards {
+            display: flex;
+        }
+
+        .pie_card {
+            width: 200px;
+            height: 250px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            border: solid 1px #ccc;
+        }
+
+        .pie_card img {
+            width: 100%;
+        }
+
+        .text {
+            width: 100%;
+            display: flex;
+            margin-top: 5px;
+            font-weight: 530;
+        }
+
+        .text div {
+            width: 50%;
+        }
+
+        .title {
+            font-weight: 800;
+        }
+
+        .price {
+            text-align: right;
+        }
+
+        .describe {
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #f6aeae;
+            padding: 10px;
+            border: solid 1px #f6aeae;
+            border-radius: 3px;
+            color: #fff;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pies.html">Pies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="logo">
+        <img src="images/logo.png" alt="Bethany's world">
+    </div>
+
+    <div class="main">
+        <h1 class="heading">Pies</h1>
+
+        <section class="cards">
+            <div class="pie_card">
+                <img src="images/apple-pie.png" alt="Apple pie">
+                <div class="text">
+                    <div class="title">
+                        Apple pie
+                    </div>
+
+                    <div class="price">
+                        $12.95
+                    </div>
+                </div>
+                <p class="describe">Our famous apple pie</p>
+                <button data-order="apple-pie">Order Now</button>
+            </div>
+
+            <div class="pie_card">
+                <img src="images/cherry-pie.png" alt="Apple pie">
+                <div class="text">
+                    <div class="title">
+                        Cherry pie
+                    </div>
+
+                    <div class="price">
+                        $15.95
+                    </div>
+                </div>
+                <p class="describe">Our famous cherry pie</p>
+                <button data-order="cherry-pie">Order Now</button>
+            </div>
+        </section>
+
+    </div>
+
+
+
+    <footer class="footer">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pies.html">Pies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function (f) {
+            const orderButtons = document.querySelectorAll("button[data-order]");
+
+            orderButtons.forEach(function (button) {
+
+                button.addEventListener("click", function (f) {
+                    const button = f.currentTarget;
+                    const container = button.parentNode;
+
+                    const order = {
+                        id: (id = button.getAttribute("data-order")),
+                        title: container.querySelector(".title").innerText,
+                        price: container.querySelector(".price").innerText,
+                        desc: container.querySelector(".describe").innerText
+                    };
+
+                    localStorage.setItem("order", JSON.stringify(order));
+
+                    const url = window.location.href.replace("pies.html", "order.html");
+                    window.location.href = url;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
